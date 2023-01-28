@@ -3,6 +3,7 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
+const postRoute = require('./routes/posts')
 
 const app = express()
 const port = 5000
@@ -25,17 +26,8 @@ app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
 
-// routes
-// app.get('/', (req, res) => res.send('Hello World!!!!'))
-// app.get('/user', (req, res) => res.send('Get user'))
-
-// app.post('/update', function (req, res) {
-// 	const { name, description } = req.body;
-// 	res.send(`Name ${name}, desc ${description}`);
-// });
-
-app.use('/api/user', userRoute)
+app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
-
+app.use('/api/posts', postRoute)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
